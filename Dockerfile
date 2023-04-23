@@ -16,7 +16,7 @@ RUN mkdir -p /rootfs/bin && \
     mkdir -p /rootfs/etc && \
       echo "nogroup:*:10000:nobody" > /rootfs/etc/group && \
       echo "nobody:*:10000:10000:::" > /rootfs/etc/passwd && \
-    setcap cap_net_admin+ep /rootfs/bin/dnsmasq
+    setcap cap_net_admin,cap_net_raw,cap_net_bind+ep /rootfs/bin/dnsmasq
 
 FROM scratch
 
