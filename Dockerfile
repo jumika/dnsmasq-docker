@@ -6,7 +6,7 @@ ARG CHECKSUM="8651373d000cae23776256e83dcaa6723dee72c06a39362700344e0c12c4e7e4"
 ADD http://www.thekelleys.org.uk/dnsmasq/dnsmasq-$VERSION.tar.gz /tmp/dnsmasq.tar.gz
 
 RUN [ "$(sha256sum /tmp/dnsmasq.tar.gz | awk '{print $1}')" = "$CHECKSUM" ] && \
-    apk add gcc linux-headers make musl-dev && \
+    apk add gcc linux-headers make musl-dev libcap && \
     tar -C /tmp -xf /tmp/dnsmasq.tar.gz && \
     cd /tmp/dnsmasq-$VERSION && \
       make LDFLAGS="-static"
