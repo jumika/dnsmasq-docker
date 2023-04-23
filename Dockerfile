@@ -15,13 +15,12 @@ RUN mkdir -p /rootfs/bin && \
       cp /tmp/dnsmasq-$VERSION/src/dnsmasq /rootfs/bin/ && \
     mkdir -p /rootfs/etc && \
       echo "nogroup:*:10000:nobody" > /rootfs/etc/group && \
-      echo "nobody:*:10000:10000:::" > /rootfs/etc/passwd
+      echo "nobody:*:10000:10000:::" > /rootfs/etc/passwd && \
+    setcap cap_net_admin+ep /rootfs/bin/dnsmasq
 
 FROM scratch
 
 COPY --from=build --chown=10000:10000 /rootfs /
-
-RUN setcap cap_net_admin+ep /bin/dnsmasq
 
 USER 10000:10000
 EXPOSE 1053/udp
