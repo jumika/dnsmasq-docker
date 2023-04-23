@@ -15,8 +15,8 @@ RUN mkdir -p /rootfs/bin && \
       cp /tmp/dnsmasq-$VERSION/src/dnsmasq /rootfs/bin/ && \
     mkdir -p /rootfs/etc && \
       echo "nogroup:*:10000:nobody" > /rootfs/etc/group && \
-      echo "nobody:*:10000:10000:::" > /rootfs/etc/passwd && \
-    setcap cap_net_admin,cap_net_raw,cap_net_bind+ep /rootfs/bin/dnsmasq
+      echo "nobody:*:10000:10000:::" > /rootfs/etc/passwd
+RUN setcap CAP_NET_ADMIN,CAP_NET_RAW,CAP_NET_BIND_SERVICE+ep /rootfs/bin/dnsmasq
 
 FROM scratch
 
