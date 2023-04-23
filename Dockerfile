@@ -23,6 +23,5 @@ FROM scratch
 COPY --from=build --chown=10000:10000 /rootfs /
 
 USER 10000:10000
-EXPOSE 1053/udp
 ENTRYPOINT ["/bin/dnsmasq"]
-CMD ["--keep-in-foreground", "--port=1053"]
+CMD ["--keep-in-foreground"]
